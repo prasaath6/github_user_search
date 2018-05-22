@@ -1,0 +1,20 @@
+@media (min-width: 769px){
+    .p-lt-0{
+         padding-left:0; 
+    }
+    .p-rt-0{
+        padding-right:0; 
+    }
+    .width95{
+        width: 100%;
+    }
+}
+@media (max-width: 768px){
+.p-lr-10{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+}
+.width80{
+    width: 80%;
+}
