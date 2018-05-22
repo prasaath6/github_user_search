@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="script.js"></script>
 </head>
 
@@ -16,62 +17,33 @@
     <div class="container pt-4" ng-controller="github_app">
         <div class="row p-lr-10">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="text" class="form-control" ng-model="query" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" ng-click="getlist()" type="button">
+                    <button class="btn btn-outline-secondary border" ng-click="getlist()" type="button">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
         </div>
         <div class="row p-lr-10">
-            <div class="col-md-6 col-sm-12 mb-4">
-                <div class="row align-items-center border width95">
+            <div class="col-md-6 col-sm-12 mb-4" ng-repeat="list in userData">
+                <div class="row align-items-center border width95" ng-class="($index%2)==1?'ml-md-auto':''">
                     <div class="col-md-4 col-sm-4 col-4 text-center">
-                        <img class="width80" src="user-image-with-black-background_318-34564.jpg" alt="Card image cap">
+                        <img class="width80 rounded-circle" ng-src="{{list.avatar_url!=''?list.avatar_url:'user-image-with-black-background_318-34564.jpg'}}"
+                            alt="Card image cap">
                     </div>
                     <div class="col-md-8 col-sm-8 col pt-4 pb-4">
-                        <p class="mb-2">Name: Prasaath</p>
-                        <p class="mb-2">Email: Prasaath</p>
-                        <p class="mb-2">Created: Prasaath</p>
+                        <p class="mb-2">Id: {{list.id}}</p>
+                        <p class="mb-2">Username: {{list.login}}</p>
+                        <p class="mb-2">Score: {{list.score}}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-12 mb-4 ">
-                <div class="row align-items-center border ml-md-auto width95">
-                    <div class="col-md-4 col-sm-4 col-4 text-center">
-                        <img class="width80" src="user-image-with-black-background_318-34564.jpg" alt="Card image cap">
-                    </div>
-                    <div class="col-md-8 col-sm-8 col pt-4 pb-4">
-                        <p class="mb-2">Name: Prasaath</p>
-                        <p class="mb-2">Email: Prasaath</p>
-                        <p class="mb-2">Created: Prasaath</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12 mb-4">
-                <div class="row align-items-center border width95">
-                    <div class="col-md-4 col-sm-4 col-4 text-center">
-                        <img class="width80" src="user-image-with-black-background_318-34564.jpg" alt="Card image cap">
-                    </div>
-                    <div class="col-md-8 col-sm-8 col pt-4 pb-4">
-                        <p class="mb-2">Name: Prasaath</p>
-                        <p class="mb-2">Email: Prasaath</p>
-                        <p class="mb-2">Created: Prasaath</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12 mb-4 ">
-                <div class="row align-items-center border ml-md-auto width95">
-                    <div class="col-md-4 col-sm-4 col-4 text-center">
-                        <img class="width80" src="user-image-with-black-background_318-34564.jpg" alt="Card image cap">
-                    </div>
-                    <div class="col-md-8 col-sm-8 col pt-4 pb-4">
-                        <p class="mb-2">Name: Prasaath</p>
-                        <p class="mb-2">Email: Prasaath</p>
-                        <p class="mb-2">Created: Prasaath</p>
-                    </div>
-                </div>
+
+        </div>
+        <div class="row p-lr-10 align-items-center" ng-if="!userData[0]">
+            <div class="col-12 text-center">
+                <p>{{helptext}}</p>
             </div>
         </div>
     </div>
